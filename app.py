@@ -5,7 +5,7 @@ ctk.set_default_color_theme("blue")
 
 app = ctk.CTk()
 app.title("Pricespy")
-app.geometry("900x600")
+app.geometry("1920x1080")
 
 # Top Bar
 top_frame = ctk.CTkFrame(app, fg_color="white", corner_radius=0)
