@@ -27,7 +27,7 @@ name.pack(anchor="w", padx=20, pady=(20, 10))
 card_frame = ctk.CTkFrame(app, fg_color="transparent")
 card_frame.pack(fill="both", expand=True, padx=20)
 
-# Sample product data (title, price, avg price)
+#Sample product data (title, price, avg price)
 products = [
     ("a","3.00","4.00"),
     ("b","3.00","4.00"),
@@ -35,9 +35,6 @@ products = [
     ("d","5.00","9.00"),
     ("e","6.00","7.00"),
     ("f","7.50","3.00"),
-    ("g","4.50","2.00"),
-    ("h","9.99","4.00"),
-    ("i","1.00","1.00")
 ]
 
 # Function to create product cards

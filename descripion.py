@@ -1,61 +1,67 @@
 import customtkinter as ctk 
-class AddPage(ctk.CTkFrame): 
-     def __init__(self, parent, controller=None): 
-         super().__init__(parent) 
 
-         #gui thingy
-         
-        search_entry = ctk.CTkEntry(top_bar, width=400, height=35, placeholder_text="paste link")
-        search_entry.pack(side="left", padx=(10, 10), pady=10)
+#app setup
+app = ctk.CTk()
+app.title("Pricespy")
+app.geometry("1000x600")
 
-        search_button = ctk.CTkButton(top_bar, text="🔍", width=40)
-        search_button.pack(side="left", pady=10)
+#Top thing
+top_frame = ctk.CTkFrame(app, fg_color="white", corner_radius=0)
+top_frame.pack(fill="x", padx=10, pady=(10, 0))
 
-        # Content Frame
-        content_frame = ctk.CTkFrame(app, fg_color="white")
-        content_frame.pack(fill="both", expand=True, padx=20, pady=10)
+#Logo 
+logo = ctk.CTkLabel(top_frame, text="Pricespy", font=ctk.CTkFont(size=20, weight="bold"), text_color="blue")
+logo.pack(side="left", padx=10)
 
-        # Left - Image placeholder
-        image_label = ctk.CTkLabel(content_frame, text="🧻", font=ctk.CTkFont(size=100))
-        image_label.grid(row=0, column=0, padx=20, sticky="n")
+#Search bar
+search_entry = ctk.CTkEntry(top_frame, width=500, placeholder_text="paste link")
+search_entry.pack(side="left", padx=20)
 
-        # Middle - Product Info
-        product_text = (
-    "Quilton 3-Ply Toilet Tissue 48 Pack\n(1 x 48 Rolls)\n\n"
-    "Brand: Quilton\n"
-    "Special feature: septic_safe, flushable, embossed\n"
-    "Unit count: 48 Count\n"
-    "Sheet count: 180\n"
-    "Ply rating: 3-Ply\n"
-    "Material feature: Biodegradable\n"
-    "Colour: White\n"
-    "Scent: Unscented\n"
-    "Item form: Roll with Sheets\n"
-    "Size: 48 count"
+#Product Card Layout 
+card_frame = ctk.CTkFrame(app, fg_color="transparent")
+card_frame.pack(fill="both", expand=True, padx=20)
+
+#frame
+frame = ctk.CTkFrame(app, fg_color="white", corner_radius=0)
+frame.pack(fill="both", expand=True, padx = 20, pady = 10)
+
+#wowww picturee
+image = ctk.CTkLabel(
+    frame,
+    text="📷",
+    font=ctk.CTkFont(size=100),
+    text_color="black"
 )
-        info_label = ctk.CTkLabel(content_frame, text=product_text, justify="left", font=ctk.CTkFont(size=14))
-        info_label.grid(row=0, column=1, padx=20, sticky="nw")
+image.grid(row=0, column=0, rowspan=2, padx=20, sticky="n")
 
-        # Right - Price box
-        price_box = ctk.CTkFrame(content_frame, width=200, height=200, corner_radius=15)
-        price_box.grid(row=0, column=2, padx=20, sticky="ne")
-        price_box.pack_propagate(False)
+# Product Info
+info_frame = ctk.CTkFrame(frame, fg_color="white")
+info_frame.grid(row=0, column=1, sticky="nw")
 
-        price_label = ctk.CTkLabel(price_box, text="$21.60", font=ctk.CTkFont(size=18, weight="bold"))
-        price_label.pack(pady=(15, 5))
+title = ctk.CTkLabel(info_frame, text="Random Product Name XYZ", font=ctk.CTkFont(size=18, weight="bold"), text_color="black")
+title.pack(anchor="w", pady=(0, 10))
 
-        avg_label = ctk.CTkLabel(price_box, text="price avg: $22.30", font=ctk.CTkFont(size=12))
-        avg_label.pack()
+details = {
+    "Brand": "BrandX",
+    "Special feature": "safe, flushable, cool"
+}
 
-        date_label = ctk.CTkLabel(price_box, text="11/06/2025", font=ctk.CTkFont(size=12))
-        date_label.pack(pady=(0, 10))
+for key, value in details.items():
+    line = f"{key}: {value}"
+    lbl = ctk.CTkLabel(info_frame, text=line, font=ctk.CTkFont(size=14), text_color="black")
+    lbl.pack(anchor="w")
 
-        def open_link():
-         webbrowser.open("https://example.com/product")
+# Price Info Box
+price_frame = ctk.CTkFrame(frame, fg_color="white", border_width=2, border_color="black", corner_radius=15)
+price_frame.grid(row=0, column=2, padx=20, sticky="n")
 
-        link_button = ctk.CTkButton(price_box, text="Link", width=120, command=open_link)
-        link_button.pack(pady=(0, 10))
+price_label = ctk.CTkLabel(price_frame, text="$19.99", font=ctk.CTkFont(size=20, weight="bold"), text_color="green")
+price_label.pack(pady=(10, 5))
+
+avg_label = ctk.CTkLabel(price_frame, text="price avg: $21.50\n02/07/2025", font=ctk.CTkFont(size=12), text_color="gray")
+avg_label.pack(pady=5)
+
+link_button = ctk.CTkButton(price_frame, text="Link", width=100, fg_color="white", text_color="orange", border_color="orange", border_width=1, hover_color="#ffe6cc")
+link_button.pack(pady=10)
 
 app.mainloop()
-
-         
