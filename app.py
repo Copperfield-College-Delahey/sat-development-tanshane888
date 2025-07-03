@@ -1,18 +1,15 @@
 import customtkinter as ctk
 
-ctk.set_appearance_mode("light")
-ctk.set_default_color_theme("blue")
-
 app = ctk.CTk()
 app.title("Pricespy")
 app.geometry("1920x1080")
 
 # Top Bar
-top_frame = ctk.CTkFrame(app, fg_color="white", corner_radius=0)
+top_frame = ctk.CTkFrame(app, fg_color="grey", corner_radius=0)
 top_frame.pack(fill="x", padx=10, pady=(10, 0))
 
 #Logo 
-logo = ctk.CTkLabel(top_frame, text="Pricespy", font=ctk.CTkFont(size=20, weight="bold"), text_color="#3B3B3B")
+logo = ctk.CTkLabel(top_frame, text="Pricespy", font=ctk.CTkFont(size=20,), text_color="black")
 logo.pack(side="left", padx=10)
 
 # Search bar
@@ -24,7 +21,7 @@ name = ctk.CTkLabel(app, text="Product List", font=ctk.CTkFont(size=24, weight="
 name.pack(anchor="w", padx=20, pady=(20, 10))
 
 #Product Card Layout 
-card_frame = ctk.CTkFrame(app, fg_color="transparent")
+card_frame = ctk.CTkFrame(app)
 card_frame.pack(fill="both", expand=True, padx=20)
 
 #Sample product data (title, price, avg price)
@@ -39,10 +36,10 @@ products = [
 
 # Function to create product cards
 def create_product_card(parent, title, price, avg_price):
-    frame = ctk.CTkFrame(parent, width=250, height=200, corner_radius=10)
+    frame = ctk.CTkFrame(parent, width=370, height=280)
     frame.pack_propagate(False)
 
-    img_placeholder = ctk.CTkLabel(frame, text="🖥️", font=ctk.CTkFont(size=30))
+    img_placeholder = ctk.CTkLabel(frame, text="🖥️", font=ctk.CTkFont(size=70))
     img_placeholder.pack(pady=(5, 0))
 
     title_label = ctk.CTkLabel(frame, text=title, wraplength=180, font=ctk.CTkFont(size=12))
