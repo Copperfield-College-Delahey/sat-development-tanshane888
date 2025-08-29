@@ -27,14 +27,19 @@ while True:  # loop forever
     # Look for price
     price = None
 
-    # Try the `.a-price` method first
-    price_tag = soup.find("span", attrs={"class": "a-price"})
-    if price_tag:
-        extracted_price = price_tag.get_text().strip()
-        parts = extracted_price.split("$")
-        if len(parts) > 1:
-            price = "$" + parts[1]  # take the first real price
-            print(f"Selected price from .a-price: {price}")
+    # First try Amazon’s known price selectors
+    selectors = [
+        "#priceblock_ourprice",
+        "#priceblock_dealprice",
+        "#priceblock_saleprice",
+        ".a-price .a-offscreen"
+    ]
+    for selector in selectors:
+        price_tag = soup.select_one(selector)
+        if price_tag:
+            price = price_tag.get_text(strip=True)
+            print(f"Selected price from selector {selector}: {price}")
+            break
 
     # Fallback: your original $ line scanning
     if not price:
@@ -63,6 +68,7 @@ while True:  # loop forever
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     try:
+        # Check if CSV already has data
         with open("price.csv", "r", encoding="utf-8") as f:
             existing_data = f.read()
             file_exists = len(existing_data.strip()) > 0
